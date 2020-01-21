@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<style>
+	body {
+		background-color:  #d35400 ;
+	}
+	#binky {
+		font-family: "Courier New";
+		color: #283747;
+		margin-top: 50px;
+	}
+	#flag {
+		font-family: "Courier New";
+		font-size: 90px;
+		color: #1c2833 ;
+	}
+	button {
+		background-color: #58d68d;
+		border: none;
+		color: #1c2833;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+	}
+	.grid-container {
+  		display: grid;
+  		grid-template-columns: auto auto auto;
+  		width: 500px;
+  		height: 500px;
+  		margin: 30px auto;
+	}
+	.grid-item {
+  		background-color: #abebc6;
+  		border: 8px solid #58d68d;
+  		padding: 20px;
+  		font-size: 120px;
+  		text-align: center;
+		color: #abebc6;
+		font-family: "Arial";
+	}
+	#one {
+		border-left-width: 0px;
+		border-top-width: 0px;
+	}
+	#two {
+		border-top-width: 0px;
+	}
+	#three {
+		border-top-width: 0px;
+		border-right-width: 0px;
+	}
+	#four {
+		border-left-width: 0px;
+	}
+	#six {
+		border-right-width: 0px;
+	}
+	#seven {
+		border-left-width: 0px;
+		border-bottom-width: 0px;
+	}
+	#eight {
+		border-bottom-width: 0px;
+	}
+	#nine {
+		border-bottom-width: 0px;
+		border-right-width: 0px;
+	}
+	</style>
+</head>
+<body>
+	<center>
+		<h1 id="binky">Binky's Tic Tac Toe</h1>
+		<h1 id="flag"></h1>
+		<button id="again">Play again</button>
+	</center>
+	<div class="grid-container">
+		<div id="one" class="grid-item"></div>
+		<div id="two" class="grid-item"></div>
+		<div id="three" class="grid-item"></div>  
+		<div id="four" class="grid-item"></div>
+		<div id="five" class="grid-item"></div>
+		<div id="six" class="grid-item"></div>  
+		<div id="seven" class="grid-item"></div>
+		<div id="eight" class="grid-item"></div>
+		<div id="nine" class="grid-item"></div>  
+	</div>
+
+	<script type="text/javascript">
+		var boxes = document.getElementsByClassName("grid-item")
+		let last = "O"
+
+		document.getElementById("again").style.visibility = "hidden";
+		
+		document.getElementById("again").onclick = function() {newGame()};
+
+		function turn (elem) {
+			if (elem.innerHTML == "W") {
+				if (last == "O"){
+					elem.innerHTML = "X"
+					last = "X"
+				} else {
+					elem.innerHTML = "O"
+					last = "O"
+				}
+				elem.style.color = "#d35400"
+				checkWin()
+			}
+		}
+
+		function nothin(elem) { 
+			elem.innerHTML = elem.innerHTML
+		}
+
+		function gameOver() {
+			document.getElementById("flag").innerHTML = last + " won!";
+			document.getElementById("again").style.visibility = "visible";
+
+			boxes[0].onclick = function() {nothin(boxes[0])};
+			boxes[1].onclick = function() {nothin(boxes[1])};
+			boxes[2].onclick = function() {nothin(boxes[2])};
+			boxes[3].onclick = function() {nothin(boxes[3])};
+			boxes[4].onclick = function() {nothin(boxes[4])};
+			boxes[5].onclick = function() {nothin(boxes[5])};
+			boxes[6].onclick = function() {nothin(boxes[6])};
+			boxes[7].onclick = function() {nothin(boxes[7])};
+			boxes[8].onclick = function() {nothin(boxes[8])};
+		}
+
+		function newGame() {
+			document.getElementById("flag").innerHTML = "";
+			document.getElementById("again").style.visibility = "hidden";
+
+			for (var i = boxes.length - 1; i >= 0; i--) {
+				boxes[i].innerHTML = "W"
+				boxes[i].style.color = "#abebc6"
+			}
+
+			boxes[0].onclick = function() {turn(boxes[0])};
+			boxes[1].onclick = function() {turn(boxes[1])};
+			boxes[2].onclick = function() {turn(boxes[2])};
+			boxes[3].onclick = function() {turn(boxes[3])};
+			boxes[4].onclick = function() {turn(boxes[4])};
+			boxes[5].onclick = function() {turn(boxes[5])};
+			boxes[6].onclick = function() {turn(boxes[6])};
+			boxes[7].onclick = function() {turn(boxes[7])};
+			boxes[8].onclick = function() {turn(boxes[8])};
+		}
+
+		function checkWin () {
+			if (boxes[0].innerHTML != "W" && boxes[0].innerHTML == boxes[1].innerHTML && boxes[0].innerHTML == boxes[2].innerHTML) {
+				gameOver()
+			} else if (boxes[3].innerHTML != "W" && boxes[3].innerHTML == boxes[4].innerHTML && boxes[3].innerHTML == boxes[5].innerHTML) {
+				gameOver()
+			} else if (boxes[6].innerHTML != "W" && boxes[6].innerHTML == boxes[7].innerHTML && boxes[6].innerHTML == boxes[8].innerHTML) {
+				gameOver()
+			} else if (boxes[0].innerHTML != "W" && boxes[0].innerHTML == boxes[3].innerHTML && boxes[0].innerHTML == boxes[6].innerHTML) {
+				gameOver()
+			} else if (boxes[1].innerHTML != "W" && boxes[1].innerHTML == boxes[4].innerHTML && boxes[1].innerHTML == boxes[7].innerHTML) {
+				gameOver()
+			} else if (boxes[2].innerHTML != "W" && boxes[2].innerHTML == boxes[5].innerHTML && boxes[2].innerHTML == boxes[8].innerHTML) {
+				gameOver()
+			} else if (boxes[0].innerHTML != "W" && boxes[0].innerHTML == boxes[4].innerHTML && boxes[0].innerHTML == boxes[8].innerHTML) {
+				gameOver()
+			} else if (boxes[2].innerHTML != "W" && boxes[2].innerHTML == boxes[4].innerHTML && boxes[2].innerHTML == boxes[6].innerHTML) {
+				gameOver()
+			} else if (
+				boxes[0].innerHTML != "W" &&
+				boxes[1].innerHTML != "W" &&
+				boxes[2].innerHTML != "W" &&
+				boxes[3].innerHTML != "W" &&
+				boxes[4].innerHTML != "W" &&
+				boxes[5].innerHTML != "W" &&
+				boxes[6].innerHTML != "W" &&
+				boxes[7].innerHTML != "W" &&
+				boxes[8].innerHTML != "W"
+			) {
+				gameOver();
+				document.getElementById("flag").innerHTML = "Tie game";
+			} 
+		}
+
+		newGame()
+
+	</script>
+</body>
+</html>
