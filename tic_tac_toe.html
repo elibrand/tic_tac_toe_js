@@ -151,22 +151,36 @@
 			boxes[8].onclick = function() {turn(boxes[8])};
 		}
 
+		function color (box1, box2, box3) {
+			box1.style.color = "#1c2833"
+			box2.style.color = "#1c2833"
+			box3.style.color = "#1c2833"
+		}
+
 		function checkWin () {
 			if (boxes[0].innerHTML != "W" && boxes[0].innerHTML == boxes[1].innerHTML && boxes[0].innerHTML == boxes[2].innerHTML) {
+				color(boxes[0], boxes[1], boxes[2])
 				gameOver()
 			} else if (boxes[3].innerHTML != "W" && boxes[3].innerHTML == boxes[4].innerHTML && boxes[3].innerHTML == boxes[5].innerHTML) {
+				color(boxes[3], boxes[4], boxes[5])
 				gameOver()
 			} else if (boxes[6].innerHTML != "W" && boxes[6].innerHTML == boxes[7].innerHTML && boxes[6].innerHTML == boxes[8].innerHTML) {
+				color(boxes[6], boxes[7], boxes[8])
 				gameOver()
 			} else if (boxes[0].innerHTML != "W" && boxes[0].innerHTML == boxes[3].innerHTML && boxes[0].innerHTML == boxes[6].innerHTML) {
+				color(boxes[0], boxes[3], boxes[6])
 				gameOver()
 			} else if (boxes[1].innerHTML != "W" && boxes[1].innerHTML == boxes[4].innerHTML && boxes[1].innerHTML == boxes[7].innerHTML) {
+				color(boxes[1], boxes[4], boxes[7])
 				gameOver()
 			} else if (boxes[2].innerHTML != "W" && boxes[2].innerHTML == boxes[5].innerHTML && boxes[2].innerHTML == boxes[8].innerHTML) {
+				color(boxes[5], boxes[2], boxes[8])
 				gameOver()
 			} else if (boxes[0].innerHTML != "W" && boxes[0].innerHTML == boxes[4].innerHTML && boxes[0].innerHTML == boxes[8].innerHTML) {
+				color(boxes[0], boxes[4], boxes[8])
 				gameOver()
 			} else if (boxes[2].innerHTML != "W" && boxes[2].innerHTML == boxes[4].innerHTML && boxes[2].innerHTML == boxes[6].innerHTML) {
+				color(boxes[2], boxes[4], boxes[6])
 				gameOver()
 			} else if (
 				boxes[0].innerHTML != "W" &&
